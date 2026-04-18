@@ -1,21 +1,28 @@
 public class QuantityMeasurementApp {
 
-    public static class Feet {
+    public static class Quantity {
         private final double value;
+        private final LengthUnit unit;
 
-        public Feet(double value) {
+        public Quantity(double value, LengthUnit unit) {
+            if (unit == null) {
+                throw new IllegalArgumentException("Unit cannot be null");
+            }
             this.value = value;
+            this.unit = unit;
+        }
+
+        private double toBaseUnit() {
+            return unit.toFeet(value);
         }
 
         @Override
         public boolean equals(Object obj) {
             if (this == obj) return true;
-
             if (obj == null || getClass() != obj.getClass()) return false;
 
-            Feet other = (Feet) obj;
-
-            return Double.compare(this.value, other.value) == 0;
+            Quantity other = (Quantity) obj;
+            return Double.compare(this.toBaseUnit(), other.toBaseUnit()) == 0;
         }
     }
 }
