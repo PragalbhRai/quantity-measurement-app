@@ -1,43 +1,62 @@
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class QuantityMeasurementAppTest {
 
-    @Test
-    void givenSameFeetValues_shouldReturnTrue() {
-        QuantityMeasurementApp.Feet f1 = new QuantityMeasurementApp.Feet(1.0);
-        QuantityMeasurementApp.Feet f2 = new QuantityMeasurementApp.Feet(1.0);
+    // -------- FEET TESTS --------
 
-        assertTrue(f1.equals(f2));
+    @Test
+    void givenSameFeet_shouldReturnTrue() {
+        var a = new QuantityMeasurementApp.Feet(1.0);
+        var b = new QuantityMeasurementApp.Feet(1.0);
+        assertTrue(a.equals(b));
     }
 
     @Test
-    void givenDifferentFeetValues_shouldReturnFalse() {
-        QuantityMeasurementApp.Feet f1 = new QuantityMeasurementApp.Feet(1.0);
-        QuantityMeasurementApp.Feet f2 = new QuantityMeasurementApp.Feet(2.0);
-
-        assertFalse(f1.equals(f2));
+    void givenDifferentFeet_shouldReturnFalse() {
+        var a = new QuantityMeasurementApp.Feet(1.0);
+        var b = new QuantityMeasurementApp.Feet(2.0);
+        assertFalse(a.equals(b));
     }
+
+    // -------- INCH TESTS --------
+
+    @Test
+    void givenSameInch_shouldReturnTrue() {
+        var a = new QuantityMeasurementApp.Inch(1.0);
+        var b = new QuantityMeasurementApp.Inch(1.0);
+        assertTrue(a.equals(b));
+    }
+
+    @Test
+    void givenDifferentInch_shouldReturnFalse() {
+        var a = new QuantityMeasurementApp.Inch(1.0);
+        var b = new QuantityMeasurementApp.Inch(2.0);
+        assertFalse(a.equals(b));
+    }
+
+    // -------- NULL TEST --------
 
     @Test
     void givenNull_shouldReturnFalse() {
-        QuantityMeasurementApp.Feet f1 = new QuantityMeasurementApp.Feet(1.0);
-
-        assertFalse(f1.equals(null));
+        var a = new QuantityMeasurementApp.Feet(1.0);
+        assertFalse(a.equals(null));
     }
 
-    @Test
-    void givenSameReference_shouldReturnTrue() {
-        QuantityMeasurementApp.Feet f1 = new QuantityMeasurementApp.Feet(1.0);
-
-        assertTrue(f1.equals(f1));
-    }
+    // -------- TYPE TEST --------
 
     @Test
     void givenDifferentType_shouldReturnFalse() {
-        QuantityMeasurementApp.Feet f1 = new QuantityMeasurementApp.Feet(1.0);
+        var feet = new QuantityMeasurementApp.Feet(1.0);
+        var inch = new QuantityMeasurementApp.Inch(12.0);
+        assertFalse(feet.equals(inch));
+    }
 
-        assertFalse(f1.equals("1.0"));
+    // -------- SAME REFERENCE --------
+
+    @Test
+    void givenSameReference_shouldReturnTrue() {
+        var a = new QuantityMeasurementApp.Inch(5.0);
+        assertTrue(a.equals(a));
     }
 }
